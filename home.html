@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gulf Hotels Group – Group Booking Enquiry</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f5f5;
+      margin: 0;
+      padding: 0;
+    }
+
+    .page-wrapper {
+      max-width: 600px;
+      margin: 40px auto;
+      background: #ffffff;
+      padding: 24px 28px;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+    }
+
+    h1 {
+      font-size: 24px;
+      margin-bottom: 8px;
+      text-align: center;
+    }
+
+    p.subtitle {
+      text-align: center;
+      font-size: 14px;
+      color: #555;
+      margin-bottom: 24px;
+    }
+
+    form {
+      width: 100%;
+    }
+
+    label {
+      display: block;
+      margin: 10px 0 4px;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    select,
+    textarea {
+      width: 100%;
+      box-sizing: border-box;
+      padding: 8px 10px;
+      font-size: 14px;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+      outline: none;
+    }
+
+    input[type="text"]:focus,
+    input[type="email"]:focus,
+    select:focus,
+    textarea:focus {
+      border-color: #0070d2;
+      box-shadow: 0 0 0 1px rgba(0,112,210,0.1);
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 80px;
+    }
+
+    .form-row-inline {
+      display: flex;
+      gap: 12px;
+    }
+
+    .form-row-inline > div {
+      flex: 1;
+    }
+
+    .submit-row {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    input[type="submit"] {
+      background: #0070d2;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      padding: 10px 22px;
+      font-size: 15px;
+      cursor: pointer;
+    }
+
+    input[type="submit"]:hover {
+      background: #005fb0;
+    }
+
+    .note {
+      font-size: 11px;
+      color: #777;
+      margin-top: 10px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="page-wrapper">
+    <h1>Group Booking Enquiry</h1>
+    <p class="subtitle">Please share your details and our team at Gulf Hotels Group will get back to you.</p>
+
+    <!-- Salesforce Web-to-Lead Form -->
+    <form action="https://webto.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8&orgId=00DKB000001x6RQ" method="POST">
+
+      <input type="hidden" name="oid" value="00DKB000001x6RQ">
+      <input type="hidden" name="retURL" value="https://www.gulfhotelsgroup.com/index.php">
+
+      <!-- Debug options (optional)
+      <input type="hidden" name="debug" value="1">
+      <input type="hidden" name="debugEmail" value="mkaranja+00dkb000001x6rq@salesforce.com">
+      -->
+
+      <div class="form-row-inline">
+        <div>
+          <label for="first_name">First Name</label>
+          <input id="first_name" maxlength="40" name="first_name" size="20" type="text" required />
+        </div>
+        <div>
+          <label for="last_name">Last Name</label>
+          <input id="last_name" maxlength="80" name="last_name" size="20" type="text" required />
+        </div>
+      </div>
+
+      <label for="email">Email</label>
+      <input id="email" maxlength="80" name="email" size="20" type="email" required />
+
+      <label for="company">Company</label>
+      <input id="company" maxlength="40" name="company" size="20" type="text" />
+
+      <label for="00NKB00001gQRyn">Property</label>
+      <select id="00NKB00001gQRyn" name="00NKB00001gQRyn" title="Property">
+        <option value="">--None--</option>
+        <option value="Gulf Convention Center">Gulf Convention Center</option>
+        <option value="Hulf Hotel Bahrain">Hulf Hotel Bahrain</option>
+        <option value="Gulf Court Hotel Business Bay">Gulf Court Hotel Business Bay</option>
+        <option value="Asdal Gulf Inn Hotel">Asdal Gulf Inn Hotel</option>
+      </select>
+
+      <div class="form-row-inline">
+        <div>
+          <label for="00NKB00001gQRym">Number of Rooms</label>
+          <input id="00NKB00001gQRym" name="00NKB00001gQRym" size="20" type="text" />
+        </div>
+      </div>
+
+      <div class="form-row-inline">
+        <div>
+          <label for="00NKB00001gQRyj">Check-in Date</label>
+          <input id="00NKB00001gQRyj" name="00NKB00001gQRyj" size="12" type="text" placeholder="YYYY-MM-DD" />
+        </div>
+        <div>
+          <label for="00NKB00001gQRyk">Check-out Date</label>
+          <input id="00NKB00001gQRyk" name="00NKB00001gQRyk" size="12" type="text" placeholder="YYYY-MM-DD" />
+        </div>
+      </div>
+
+      <label for="00NKB00001gQRyl">Notes</label>
+      <textarea id="00NKB00001gQRyl" name="00NKB00001gQRyl" rows="5" wrap="soft"></textarea>
+
+      <div class="submit-row">
+        <input type="submit" name="submit" value="Submit Enquiry">
+      </div>
+
+      <p class="note">
+        By submitting this form, you agree to be contacted by Gulf Hotels Group regarding your enquiry.
+      </p>
+    </form>
+  </div>
+
+</body>
+</html>
