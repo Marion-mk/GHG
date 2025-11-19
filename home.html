@@ -287,4 +287,52 @@
       <!-- Number of Rooms with + control -->
       <div class="rooms-wrapper">
         <label for="00NKB00001gQRym">Number of Rooms</label>
-        <div class=
+        <div class="rooms-control">
+          <input id="00NKB00001gQRym" name="00NKB00001gQRym" type="number" min="1" placeholder="e.g. 10" />
+          <button type="button" class="rooms-plus-btn" onclick="incrementRooms()">+</button>
+        </div>
+      </div>
+
+      <div class="inline-two">
+        <div class="form-row">
+          <label for="00NKB00001gQRyj">Check-in Date</label>
+          <input id="00NKB00001gQRyj" name="00NKB00001gQRyj" type="text" placeholder="DD/MM/YYYY" />
+        </div>
+
+        <div class="form-row">
+          <label for="00NKB00001gQRyk">Check-out Date</label>
+          <input id="00NKB00001gQRyk" name="00NKB00001gQRyk" type="text" placeholder="DD/MM/YYYY" />
+        </div>
+      </div>
+
+      <div class="form-row">
+        <label for="00NKB00001gQRyl">Notes</label>
+        <textarea id="00NKB00001gQRyl" name="00NKB00001gQRyl" wrap="soft"
+                  placeholder="Tell us more about your event or stay requirements…"></textarea>
+      </div>
+
+      <div class="footer-row">
+        <p class="note-text">
+          By submitting this form, you agree to be contacted by Gulf Hotels Group regarding your enquiry.
+        </p>
+        <button class="submit-btn" type="submit" name="submit">
+          Submit Enquiry
+        </button>
+      </div>
+    </form>
+  </div>
+
+  <script>
+    function incrementRooms() {
+      const input = document.getElementById('00NKB00001gQRym');
+      let value = parseInt(input.value || '0', 10);
+      if (isNaN(value)) {
+        value = 0;
+      }
+      value += 1;
+      input.value = value;
+    }
+  </script>
+
+</body>
+</html>
