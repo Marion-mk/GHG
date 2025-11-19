@@ -25,16 +25,22 @@ body {
   margin: 0;
   min-height: 100vh;
   color: #333;
-  background: linear-gradient(
+  background-image: 
+    linear-gradient(
       rgba(0, 0, 0, 0.5),
       rgba(0, 0, 0, 0.6)
     ),
-    url("/gulf-hotel-bahrain-convention.jpeg") center/cover no-repeat fixed;
+    url("/gulf-hotel-bahrain-convention.jpeg"); /* see path note below */
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  /* background-attachment: fixed;  <-- try WITHOUT this first */
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 20px;
 }
+
 
     .page-wrapper {
       max-width: 960px;
