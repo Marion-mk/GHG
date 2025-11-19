@@ -1,155 +1,338 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Gulf Hotels Group – Web to Lead</title>
+  <meta charset="UTF-8" />
+  <title>Gulf Hotels Group – Group Booking Lead</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    :root {
+      --primary-color: #8b1c2b;   /* deep Gulf-style burgundy */
+      --primary-dark: #5b111c;
+      --accent-gold: #d4a037;
+      --text-color: #ffffff;
+      --card-bg: rgba(255, 255, 255, 0.96);
+      --card-radius: 12px;
+      --input-border: #ccc;
+      --input-focus: #8b1c2b;
+    }
 
-<style>
+    * {
+      box-sizing: border-box;
+      font-family: "Helvetica Neue", Arial, sans-serif;
+    }
+
     body {
-        margin: 0;
-        font-family: 'Arial', sans-serif;
-        background-image: url('https://www.gulfhotelsgroup.com/images/homebanner3.jpg');
-        background-size: cover;
-        background-repeat: no-repeat;
-        background-position: center;
-        backdrop-filter: blur(3px);
+      margin: 0;
+      min-height: 100vh;
+      color: #333;
+      background: linear-gradient(
+          rgba(0, 0, 0, 0.5),
+          rgba(0, 0, 0, 0.6)
+        ),
+        url("gulf-hotels-bg.jpg") center/cover no-repeat fixed;
+      /* Replace gulf-hotels-bg.jpg with a real image path */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
     }
 
-    .form-container {
-        background: rgba(255, 255, 255, 0.92);
-        margin: 50px auto;
-        padding: 30px;
-        width: 420px;
-        border-radius: 12px;
-        box-shadow: 0 8px 18px rgba(0,0,0,0.25);
+    .page-wrapper {
+      max-width: 960px;
+      width: 100%;
     }
 
-    .logo-container img {
-        width: 160px;
-        display: block;
-        margin: 0 auto 20px auto;
+    .branding-bar {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 16px;
+      color: var(--text-color);
+    }
+
+    .branding-bar img {
+      height: 60px;
+      width: auto;
+      object-fit: contain;
+    }
+
+    .branding-bar h1 {
+      margin: 0;
+      font-size: 1.6rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .branding-bar span {
+      display: block;
+      font-size: 0.85rem;
+      color: #f4e2c8;
+    }
+
+    .form-card {
+      background: var(--card-bg);
+      border-radius: var(--card-radius);
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35);
+      padding: 24px 24px 28px;
+      border-top: 4px solid var(--accent-gold);
+    }
+
+    .form-header {
+      margin-bottom: 20px;
+      border-bottom: 1px solid #eee;
+      padding-bottom: 12px;
+    }
+
+    .form-header h2 {
+      margin: 0;
+      font-size: 1.4rem;
+      color: var(--primary-dark);
+    }
+
+    .form-header p {
+      margin: 6px 0 0;
+      font-size: 0.9rem;
+      color: #777;
+    }
+
+    form {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px 24px;
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
     }
 
     label {
-        font-weight: bold;
-        margin-top: 12px;
-        display: block;
-        color: #7b1f24;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #555;
     }
 
-    input, select, textarea {
-        width: 100%;
-        padding: 10px;
-        margin-top: 6px;
-        border-radius: 6px;
-        border: 1px solid #ccc;
-        font-size: 14px;
+    input[type="text"],
+    input[type="email"],
+    select,
+    textarea,
+    input[type="date"],
+    input[type="number"] {
+      padding: 8px 10px;
+      border-radius: 6px;
+      border: 1px solid var(--input-border);
+      font-size: 0.95rem;
+      outline: none;
+      transition: border 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+      border-color: var(--input-focus);
+      box-shadow: 0 0 0 2px rgba(139, 28, 43, 0.15);
     }
 
     textarea {
-        resize: vertical;
+      resize: vertical;
+      min-height: 80px;
     }
 
-    .rooms-container {
-        display: flex;
-        align-items: center;
-        gap: 10px;
+    /* Number of Rooms with + button */
+    .rooms-wrapper {
+      display: flex;
+      align-items: stretch;
+      border-radius: 6px;
+      overflow: hidden;
+      border: 1px solid var(--input-border);
+      background: #fafafa;
     }
 
-    .rooms-container input {
-        flex: 1;
+    .rooms-wrapper input {
+      border: none;
+      border-radius: 0;
+      width: 80px;
+      text-align: center;
+      background: transparent;
     }
 
-    .rooms-container button {
-        width: 38px;
-        height: 38px;
-        border-radius: 6px;
-        background-color: #7b1f24;
-        color: #fff;
-        border: none;
-        font-size: 20px;
-        cursor: pointer;
+    .rooms-wrapper button {
+      border: none;
+      background: var(--primary-color);
+      color: #fff;
+      padding: 0 12px;
+      cursor: pointer;
+      font-size: 1.1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s ease;
     }
 
-    .submit-btn {
-        width: 100%;
-        padding: 12px;
-        margin-top: 15px;
-        background-color: #7b1f24;
-        color: white;
-        border: none;
-        border-radius: 6px;
-        font-size: 16px;
-        cursor: pointer;
-        font-weight: bold;
+    .rooms-wrapper button:hover {
+      background: var(--primary-dark);
     }
 
-    .submit-btn:hover {
-        background-color: #5f181d;
+    .full-width {
+      grid-column: 1 / -1;
     }
-</style>
 
-<script>
-    function incrementRooms() {
-        let input = document.getElementById("rooms");
-        input.value = Number(input.value || 0) + 1;
+    .submit-row {
+      grid-column: 1 / -1;
+      display: flex;
+      justify-content: flex-end;
+      margin-top: 8px;
     }
-</script>
 
+    .submit-row input[type="submit"] {
+      background: var(--accent-gold);
+      color: #3f2720;
+      border: none;
+      padding: 10px 22px;
+      font-size: 0.95rem;
+      border-radius: 999px;
+      cursor: pointer;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      transition: background 0.2s ease, transform 0.1s ease,
+        box-shadow 0.2s ease;
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.2);
+    }
+
+    .submit-row input[type="submit"]:hover {
+      background: #e0b251;
+      transform: translateY(-1px);
+      box-shadow: 0 10px 22px rgba(0, 0, 0, 0.25);
+    }
+
+    .submit-row input[type="submit"]:active {
+      transform: translateY(0);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    @media (max-width: 640px) {
+      .branding-bar {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .form-card {
+        padding: 18px 16px 22px;
+      }
+    }
+  </style>
 </head>
 <body>
 
-<div class="form-container">
-
-    <div class="logo-container">
-        <img src="https://www.gulfhotelsgroup.com/images/logo.png" alt="Gulf Hotels Group Logo">
+  <div class="page-wrapper">
+    <!-- Top branding bar with logo -->
+    <div class="branding-bar">
+      <!-- Replace src with your actual logo path -->
+      <img src="gulf-hotels-logo.png" alt="Gulf Hotels Group Logo" />
+      <div>
+        <h1>Gulf Hotels Group</h1>
+        <span>Group Booking & Events Lead Capture</span>
+      </div>
     </div>
 
-    <form action="https://webto.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8&orgId=00DKB000001x6RQ" method="POST">
+    <div class="form-card">
+      <div class="form-header">
+        <h2>Plan Your Next Stay or Event</h2>
+        <p>Please share your details and our Sales team will contact you shortly.</p>
+      </div>
 
-        <input type="hidden" name="oid" value="00DKB000001x6RQ">
-        <input type="hidden" name="retURL" value="https://www.gulfhotelsgroup.com/index.php">
+      <!-- Salesforce Web-to-Lead Form -->
+      <form action="https://webto.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8&amp;orgId=00DKB000001x6RQ" method="POST">
+        <input type="hidden" name="oid" value="00DKB000001x6RQ" />
+        <input type="hidden" name="retURL" value="https://www.gulfhotelsgroup.com/index.php" />
 
-        <label>First Name</label>
-        <input id="first_name" maxlength="40" name="first_name" type="text" required>
-
-        <label>Last Name</label>
-        <input id="last_name" maxlength="80" name="last_name" type="text" required>
-
-        <label>Email</label>
-        <input id="email" maxlength="80" name="email" type="email" required>
-
-        <label>Company</label>
-        <input id="company" maxlength="40" name="company" type="text">
-
-        <label for="property">Property</label>
-        <select id="00NKB00001gQRyn" name="00NKB00001gQRyn">
-            <option value="">--Select Property--</option>
-            <option value="Gulf Convention Center">Gulf Convention Center</option>
-            <option value="Gulf Hotel Bahrain">Gulf Hotel Bahrain</option>
-            <option value="Gulf Court Hotel Business Bay">Gulf Court Hotel Business Bay</option>
-            <option value="Asdal Gulf Inn Hotel">Asdal Gulf Inn Hotel</option>
-        </select>
-
-        <label>Number of Rooms</label>
-        <div class="rooms-container">
-            <input id="rooms" name="00NKB00001gQRym" type="number" min="0" placeholder="0">
-            <button type="button" onclick="incrementRooms()">+</button>
+        <!-- First Name -->
+        <div class="field">
+          <label for="first_name">First Name</label>
+          <input id="first_name" maxlength="40" name="first_name" size="20" type="text" />
         </div>
 
-        <label>Check-in Date</label>
-        <input id="00NKB00001gQRyj" name="00NKB00001gQRyj" type="date">
+        <!-- Last Name -->
+        <div class="field">
+          <label for="last_name">Last Name</label>
+          <input id="last_name" maxlength="80" name="last_name" size="20" type="text" />
+        </div>
 
-        <label>Check-out Date</label>
-        <input id="00NKB00001gQRyk" name="00NKB00001gQRyk" type="date">
+        <!-- Email -->
+        <div class="field">
+          <label for="email">Email</label>
+          <input id="email" maxlength="80" name="email" size="20" type="email" />
+        </div>
 
-        <label>Notes</label>
-        <textarea id="00NKB00001gQRyl" name="00NKB00001gQRyl" rows="4"></textarea>
+        <!-- Company -->
+        <div class="field">
+          <label for="company">Company</label>
+          <input id="company" maxlength="40" name="company" size="20" type="text" />
+        </div>
 
-        <button class="submit-btn" type="submit">Submit</button>
-    </form>
+        <!-- Property -->
+        <div class="field">
+          <label for="00NKB00001gQRyn">Property</label>
+          <select id="00NKB00001gQRyn" name="00NKB00001gQRyn" title="Property">
+            <option value="">-- Select a Property --</option>
+            <option value="Gulf Convention Center">Gulf Convention Center</option>
+            <option value="Hulf Hotel Bahrain">Hulf Hotel Bahrain</option>
+            <option value="Gulf Court Hotel Business Bay">Gulf Court Hotel Business Bay</option>
+            <option value="Asdal Gulf Inn Hotel">Asdal Gulf Inn Hotel</option>
+          </select>
+        </div>
 
-</div>
+        <!-- Number of Rooms with + button (and manual edit) -->
+        <div class="field">
+          <label for="00NKB00001gQRym">Number of Rooms</label>
+          <div class="rooms-wrapper">
+            <input id="00NKB00001gQRym" name="00NKB00001gQRym" type="number" min="1" value="1" />
+            <button type="button" id="roomsPlus">+</button>
+          </div>
+        </div>
 
+        <!-- Check-in Date with date picker -->
+        <div class="field">
+          <label for="00NKB00001gQRyj">Check-in Date</label>
+          <input id="00NKB00001gQRyj" name="00NKB00001gQRyj" type="date" />
+        </div>
+
+        <!-- Check-out Date with date picker -->
+        <div class="field">
+          <label for="00NKB00001gQRyk">Check-out Date</label>
+          <input id="00NKB00001gQRyk" name="00NKB00001gQRyk" type="date" />
+        </div>
+
+        <!-- Notes -->
+        <div class="field full-width">
+          <label for="00NKB00001gQRyl">Notes</label>
+          <textarea id="00NKB00001gQRyl" name="00NKB00001gQRyl" rows="5" wrap="soft"
+            placeholder="Tell us more about your group, event or stay preferences..."></textarea>
+        </div>
+
+        <!-- Submit -->
+        <div class="submit-row">
+          <input type="submit" name="submit" value="Submit Enquiry" />
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    // Handle + button for Number of Rooms
+    const roomsInput = document.getElementById("00NKB00001gQRym");
+    const roomsPlusBtn = document.getElementById("roomsPlus");
+
+    if (roomsPlusBtn && roomsInput) {
+      roomsPlusBtn.addEventListener("click", () => {
+        let current = parseInt(roomsInput.value, 10);
+        if (isNaN(current) || current < 1) current = 0;
+        roomsInput.value = current + 1;
+      });
+    }
+  </script>
 </body>
 </html>
